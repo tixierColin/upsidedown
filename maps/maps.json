@@ -1,0 +1,41 @@
+{
+    "levels" : [
+        {
+            "exits" : [
+                null,
+                null,
+                2,
+                null
+            ],
+            "blocks": [
+                {"pos" : {"x": 0, "y": 45}, "height": 5, "width": 50, "type": "floor"},
+                {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 50, "type": "floor"},
+                {"pos": {"x": 20, "y": 10}, "height": 5, "width": 5, "type": "reverse"},
+                {"pos": {"x": 0, "y": 4}, "height": 5, "width": 10, "type": "spike"}
+            ]
+        },
+        {
+            "exits" : [
+                1,
+                null,
+                null,
+                null
+            ],
+            "blocks": [
+                {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 30, "type": "floor"},
+                {"pos" : {"x": 30, "y": 30}, "height": 3, "width": 25, "type": "floor"}
+            ]
+        },
+        {
+            "exits" : [
+                null,
+                null,
+                null,
+                null
+            ],
+            "blocks": [
+                {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 50, "type": "floor"}
+            ]
+        }
+    ]
+}
