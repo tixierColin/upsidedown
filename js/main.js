@@ -14,6 +14,9 @@ for (const i in dirs) {
 let keyimg = new Image();
 keyimg.src = "/img/key.png";
 
+let doorimg = new Image();
+doorimg.src = "/img/door.png";
+
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let tileMap = new TileMap();
@@ -32,8 +35,21 @@ document.addEventListener('keyup', function(e){
 
 function run () {
     setInterval(()=>{
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#0d0d0d";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         tileMap.renderMap(player.currentMap);
+        if (!player.living) {
+            ctx.fillStyle = "grey";
+            ctx.fillRect(0, canvas.height/2 + 5, canvas.width, 30);
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.textAlign = "center"; 
+            ctx.fillText("U DED", canvas.width/2, canvas.height/2 +30);
+            if (keys[82]) {
+                player.reset();
+            }
+        }
         player.update();
     }, 1000/60);
 }

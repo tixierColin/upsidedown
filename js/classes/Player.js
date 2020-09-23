@@ -9,6 +9,7 @@ class Player extends GameObject {
         this.currentMap = 1;
         this.alreadyTouched = [];
         this.keys = 0;
+        this.living = true;
     }
     /*draw() {
         let image = new Image();
@@ -19,15 +20,25 @@ class Player extends GameObject {
     }*/
     update() {
         this.draw();
-        this.posCalc();
-        this.colDectection();
-        this.exit();
+        if (this.living) {
+            this.posCalc();
+            this.colDectection();
+            this.exit();
+        }
     }
     reset() {
-        this.pos = new Vector(this.defaultPos.x, this.defaultPos.y);
-        this.currentMap = 1;
-        this.vel = new Vector();
-        this.direction = "down";
+        /*this.living = false;
+        let wait = setInterval(() => {*/
+            this.currentMap = 1;
+            this.pos = new Vector(this.defaultPos.x, this.defaultPos.y);
+            this.vel = new Vector();
+            this.direction = "down";
+            this.keys = 0;
+            tileMap.resetKeys();
+            this.living = true;
+          //  clearInterval(wait);
+        //},2000)
+
     }
     posCalc() {
         if (this.grounded) {
@@ -112,7 +123,7 @@ class Player extends GameObject {
                 this.vel.y = 0;
             }
             if (col && obstacle.type == "spike") {
-                this.reset();
+               this.living = false;
             }
         }
         if (fall) {
@@ -126,25 +137,25 @@ class Player extends GameObject {
             this.currentMap = currentLvl.exits[2];
             this.pos.x = 0;
         } else if (player.pos.x > 500) {
-            this.reset();
+            this.living = false;
         }
-        if (player.pos.x < 0 && currentLvl.exits[0] != null) {
+        if (player.pos.x + this.width < 0 && currentLvl.exits[0] != null) {
             this.currentMap = currentLvl.exits[0];
             this.pos.x = 500;
-        } else if (player.pos.x < 0) {
-            this.reset();
+        } else if (player.pos.x + this.width < 0) {
+            this.living = false;
         }
-        if (player.pos.y < 0  && currentLvl.exits[1] != null) {
+        if (player.pos.y + this.height < 0  && currentLvl.exits[1] != null) {
             this.currentMap = currentLvl.exits[1];
             this.pos.y = 500;
-        } else if (player.pos.y < 0) {
-            this.reset();
+        } else if (player.pos.y + this.height < 0) {
+            this.living = false;
         }
         if (player.pos.y > 500 && currentLvl.exits[3] != null) {
             this.currentMap = currentLvl.exits[3];
             this.pos.y = 0;
         } else if (player.pos.y > 500) {
-            this.reset();
+            this.living = false;
         }
     }
 }
