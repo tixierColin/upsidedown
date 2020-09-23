@@ -32,6 +32,11 @@ class TileMap {
             } else if (object.type == "arrow") {
                 ctx.drawImage(imgsArrows[object.dir], object.pos.x * this.gridSize, object.pos.y * this.gridSize,
                     object.width * this.gridSize, object.height*this.gridSize);
+            } else if (object.type == "key" && !object.taken) {
+                object.height = 5;
+                object.width = 5;
+                ctx.drawImage(keyimg, object.pos.x * this.gridSize, object.pos.y * this.gridSize,
+                    object.width * this.gridSize, object.height*this.gridSize);
             }
         }
     }

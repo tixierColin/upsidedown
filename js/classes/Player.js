@@ -8,6 +8,7 @@ class Player extends GameObject {
         this.friction = 0.8;
         this.currentMap = 1;
         this.alreadyTouched = [];
+        this.keys = 0;
     }
     /*draw() {
         let image = new Image();
@@ -77,7 +78,7 @@ class Player extends GameObject {
                 }
             }
             
-            if (obstacle.type == "floor") {
+            if (obstacle.type == "floor" && col) {
                 if (col == "bottom") {
                     this.pos.y = obstacle.pos.y * tileMap.gridSize - this.height - 0.3;
                     if (this.direction == "down") {
@@ -100,17 +101,18 @@ class Player extends GameObject {
                     this.vel.x = 0
                 }
             }
-
+            if (col && obstacle.type == "key" && !obstacle.taken) {
+                obstacle.taken = true;
+                this.keys ++;
+            }
             if (col && obstacle.type == "reverse" && !this.grounded && !this.alreadyTouched.includes(key) && keys[65]) {
                 this.alreadyTouched = [];
                 this.alreadyTouched.push(key)
                 this.direction = this.direction == "up" ? "down" : "up";
                 this.vel.y = 0;
-                //console.log(this.vel.y);
             }
             if (col && obstacle.type == "spike") {
                 this.reset();
-               // console.log(1);
             }
         }
         if (fall) {

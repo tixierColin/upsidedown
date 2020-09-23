@@ -63,7 +63,8 @@
                 3
             ],
             "blocks": [
-                {"pos": {"x": 22.5, "y": 10}, "height": 5, "width": 5 , "type": "reverse"}
+                {"pos": {"x": 22.5, "y": 10}, "height": 5, "width": 5 , "type": "reverse"},
+                {"pos": {"x": 22.5, "y": 15}, "type": "key", "taken": false}
             ]
         },
         {

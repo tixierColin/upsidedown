@@ -11,6 +11,8 @@ for (const i in dirs) {
     imgsArrows[dirs[i]] = arrowImg;
 }
 
+let keyimg = new Image();
+keyimg.src = "/img/key.png";
 
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
