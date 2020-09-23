@@ -38,7 +38,6 @@ function run () {
         //ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#0d0d0d";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        tileMap.renderMap(player.currentMap);
         if (!player.living) {
             ctx.fillStyle = "#d61d00";
             ctx.fillRect(0, canvas.height/2 + 5, canvas.width, 30);
@@ -51,6 +50,17 @@ function run () {
                 player.reset();
             }
         }
-        player.update();
+        if (player.win) {
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.textAlign = "center"; 
+            ctx.fillText("Good job you managed to escape the ship!", canvas.width/2, canvas.height/2 - 30);
+            ctx.fillText("but the rescue capsule hit an asteroid...", canvas.width/2, canvas.height/2);
+            ctx.fillText("YOU ARE NOW DED!", canvas.width/2, canvas.height/2 +30);
+            ctx.fillText("press \"R\" to restart", canvas.width/2, canvas.height/2 +60);
+        } else {
+            tileMap.renderMap(player.currentMap);
+            player.update();
+        }
     }, 1000/60);
 }

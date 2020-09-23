@@ -10,6 +10,7 @@ class Player extends GameObject {
         this.alreadyTouched = [];
         this.keys = 0;
         this.living = true;
+        this.win = false;
     }
     /*draw() {
         let image = new Image();
@@ -27,18 +28,14 @@ class Player extends GameObject {
         }
     }
     reset() {
-        /*this.living = false;
-        let wait = setInterval(() => {*/
-            this.currentMap = 1;
-            this.pos = new Vector(this.defaultPos.x, this.defaultPos.y);
-            this.vel = new Vector();
-            this.direction = "down";
-            this.keys = 0;
-            tileMap.resetKeys();
-            this.living = true;
-          //  clearInterval(wait);
-        //},2000)
-
+        this.currentMap = 1;
+        this.pos = new Vector(this.defaultPos.x, this.defaultPos.y);
+        this.vel = new Vector();
+        this.direction = "down";
+        this.keys = 0;
+        tileMap.resetKeys();
+        this.living = true;
+        this.win = false;
     }
     posCalc() {
         if (this.grounded) {
@@ -124,6 +121,23 @@ class Player extends GameObject {
             }
             if (col && obstacle.type == "spike") {
                this.living = false;
+            }
+            if (col && obstacle.type == "door") {
+                if (obstacle.numKeyReq != this.keys) {
+                    ctx.fillStyle = "white";
+                    ctx.font = "30px Arial";
+                    ctx.textAlign = "center"; 
+                    ctx.fillText(`missing ${obstacle.numKeyReq - this.keys} keys!`, canvas.width/2, canvas.height/2 +30);
+                } else {
+                    ctx.fillStyle = "white";
+                    ctx.font = "30px Arial";
+                    ctx.textAlign = "center"; 
+                    ctx.fillText("press \"E\" to escape", canvas.width/2, canvas.height/2 +30);
+                    if (keys[69]) {
+                        console.log(1);
+                        this.win = true;
+                    }
+                }
             }
         }
         if (fall) {
