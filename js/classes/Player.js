@@ -23,7 +23,7 @@ class Player extends GameObject {
         this.exit();
     }
     reset() {
-        this.pos = this.defaultPos;
+        this.pos = new Vector(this.defaultPos.x, this.defaultPos.y);
         this.currentMap = 1;
         this.vel = new Vector();
         this.direction = "down";
@@ -34,15 +34,14 @@ class Player extends GameObject {
             this.vel.y = 0;
             this.alreadyTouched = [];
         }
-        //console.log(keys);
         if (this.grounded && keys[65]) {
             this.direction = this.direction == "up" ? "down" : "up";
         }
         if (!this.grounded) {
             if (this.direction == "down") {
-                this.vel.y += 0.05;
+                this.vel.y += 0.2;
             } else if (this.direction == "up") {
-                this.vel.y -= 0.05;
+                this.vel.y -= 0.2;
             }
             if (keys[37]) {
                 this.vel.x -= 0.55;
@@ -58,10 +57,26 @@ class Player extends GameObject {
         let fall = true;
         let obstacles = tileMap.getMap(this.currentMap).blocks;
         for (let [key, obstacle] of Object.entries(obstacles)) {
-            let col = this.collision(obstacle.width * tileMap.gridSize,
-                obstacle.height * tileMap.gridSize,
-                obstacle.pos.x * tileMap.gridSize,
-                obstacle.pos.y * tileMap.gridSize);
+            let col = false;
+            if (obstacle.type != "spike") {
+                col = this.collision(obstacle.width * tileMap.gridSize,
+                    obstacle.height * tileMap.gridSize,
+                    obstacle.pos.x * tileMap.gridSize,
+                    obstacle.pos.y * tileMap.gridSize);
+            } else {
+                if (obstacle.dir == "t" || obstacle.dir == "b") {
+                    col = this.collision(20,
+                        obstacle.height * tileMap.gridSize,
+                        obstacle.pos.x * tileMap.gridSize + obstacle.width * tileMap.gridSize/2 -10,
+                        obstacle.pos.y * tileMap.gridSize);
+                } else {
+                    col = this.collision(obstacle.width * tileMap.gridSize,
+                        20,
+                        obstacle.pos.x * tileMap.gridSize,
+                        obstacle.pos.y * tileMap.gridSize + obstacle.height * tileMap.gridSize/2 -10);
+                }
+            }
+            
             if (obstacle.type == "floor") {
                 if (col == "bottom") {
                     this.pos.y = obstacle.pos.y * tileMap.gridSize - this.height - 0.3;
@@ -90,10 +105,11 @@ class Player extends GameObject {
                 this.alreadyTouched.push(key)
                 this.direction = this.direction == "up" ? "down" : "up";
                 this.vel.y = 0;
-                console.log(this.vel.y);
+                //console.log(this.vel.y);
             }
             if (col && obstacle.type == "spike") {
                 this.reset();
+               // console.log(1);
             }
         }
         if (fall) {
@@ -107,18 +123,26 @@ class Player extends GameObject {
         if (player.pos.x > 500 && currentLvl.exits[2] != null) {
             this.currentMap = currentLvl.exits[2];
             this.pos.x = 0;
+        } else if (player.pos.x > 500) {
+            this.reset();
         }
         if (player.pos.x < 0 && currentLvl.exits[0] != null) {
             this.currentMap = currentLvl.exits[0];
             this.pos.x = 500;
+        } else if (player.pos.x < 0) {
+            this.reset();
         }
         if (player.pos.y < 0  && currentLvl.exits[1] != null) {
             this.currentMap = currentLvl.exits[1];
             this.pos.y = 500;
+        } else if (player.pos.y < 0) {
+            this.reset();
         }
         if (player.pos.y > 500 && currentLvl.exits[3] != null) {
             this.currentMap = currentLvl.exits[3];
             this.pos.y = 0;
+        } else if (player.pos.y > 500) {
+            this.reset();
         }
     }
 }
