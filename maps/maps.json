@@ -9,7 +9,11 @@
             ],
             "blocks": [
                 {"pos" : {"x": 0, "y": 45}, "height": 5, "width": 50, "type": "floor"},
-                {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 50, "type": "floor"},
+
+                {"pos" : {"x": 30, "y": 0}, "height": 5, "width": 20, "type": "floor"},
+
+                {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 20, "type": "floor"},
+                
                 {"pos": {"x": 20, "y": 10}, "height": 5, "width": 5, "type": "reverse"},
                 {"pos": {"x": 0, "y": 5}, "type": "spike", "dir": "b"},
                 {"pos": {"x": 10, "y": 40}, "type": "spike", "dir": "t"},

@@ -27,14 +27,11 @@ class TileMap {
             } else if (object.type == "spike") {
                 object.width = 5;
                 object.height = 5;
-                let image = new Image();
-                image.onload = () => {
-                    ctx.drawImage(image, object.pos.x * this.gridSize, object.pos.y * this.gridSize,
-                        object.width * this.gridSize, object.height*this.gridSize);
-                    }
-                ctx.fillStyle = "yellow";
-                
-                image.src = `/img/spike_${object.dir}.png`;
+                ctx.drawImage(imgsSpike[object.dir], object.pos.x * this.gridSize, object.pos.y * this.gridSize,
+                    object.width * this.gridSize, object.height*this.gridSize);
+            } else if (object.type == "arrow") {
+                ctx.drawImage(imgsArrows[object.dir], object.pos.x * this.gridSize, object.pos.y * this.gridSize,
+                    object.width * this.gridSize, object.height*this.gridSize);
             }
         }
     }

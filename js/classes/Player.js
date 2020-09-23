@@ -102,6 +102,7 @@ class Player extends GameObject {
             }
 
             if (col && obstacle.type == "reverse" && !this.grounded && !this.alreadyTouched.includes(key) && keys[65]) {
+                this.alreadyTouched = [];
                 this.alreadyTouched.push(key)
                 this.direction = this.direction == "up" ? "down" : "up";
                 this.vel.y = 0;

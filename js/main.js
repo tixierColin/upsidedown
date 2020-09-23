@@ -1,3 +1,17 @@
+let imgsArrows = {};
+let imgsSpike = {};
+let dirs = ["t", "l", "r", "b"]
+for (const i in dirs) {
+    let spikeImg = new Image();
+    spikeImg.src = `/img/spike_${dirs[i]}.png`;
+    imgsSpike[dirs[i]] = spikeImg;
+
+    let arrowImg = new Image();
+    arrowImg.src = `/img/arrow_${dirs[i]}.png`;
+    imgsArrows[dirs[i]] = arrowImg;
+}
+
+
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let tileMap = new TileMap();
