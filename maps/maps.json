@@ -25,7 +25,6 @@
             "blocks": [
                 {"pos" : {"x": 15, "y": 25}, "height": 5, "width": 15, "type": "floor"},
                 {"pos" : {"x": 30, "y": 25}, "height": 35, "width": 5, "type": "floor"},
-                {"pos": {"x": 15, "y": 30}, "type": "spike", "dir": "b"},
                 {"pos" : {"x": 0, "y": 45}, "height": 5, "width": 20, "type": "floor"},
                 {"pos": {"x": 7, "y": 7}, "height": 3, "width": 3 , "type": "reverse"},
                 {"pos": {"x": 20, "y": 20}, "type": "spike", "dir": "t"},
@@ -43,11 +42,16 @@
                 2,
                 4,
                 null,
-                null
+                5
             ],
             "blocks": [
                 {"pos" : {"x": 0, "y": 25}, "height": 5, "width": 10, "type": "floor"},
-                {"pos": {"x": 7, "y": 40}, "height": 3, "width": 3 , "type": "reverse"}
+                {"pos": {"x": 4, "y": 40}, "height": 3, "width": 7 , "type": "reverse"},
+                {"pos" : {"x": 0, "y": 25}, "height": 5, "width": 10, "type": "floor"},
+                {"pos" : {"x": 10, "y": 20}, "height": 5, "width": 5, "type": "floor"},
+                {"pos" : {"x": 20, "y": 13}, "height": 10, "width": 10, "type": "arrow", "dir": "t"},
+                {"pos": {"x": 22.5, "y": 40}, "height": 5, "width": 5 , "type": "reverse"}
+
 
             ]
         },
@@ -60,6 +64,18 @@
             ],
             "blocks": [
                 {"pos": {"x": 22.5, "y": 10}, "height": 5, "width": 5 , "type": "reverse"}
+            ]
+        },
+        {
+            "exits" : [
+                null,
+                3,
+                null,
+                null
+            ],
+            "blocks": [
+                {"pos" : {"x": 10, "y": 10}, "height": 10, "width": 10, "type": "arrow", "dir": "t"},
+                {"pos": {"x": 22.5, "y": 35}, "height": 5, "width": 5 , "type": "floor"}
             ]
         }
     ]
