@@ -120,7 +120,6 @@ class Player extends GameObject {
 
     exit() {
         let currentLvl = tileMap.getMap(this.currentMap);
-
         if (player.pos.x > 500 && currentLvl.exits[2] != null) {
             this.currentMap = currentLvl.exits[2];
             this.pos.x = 0;
