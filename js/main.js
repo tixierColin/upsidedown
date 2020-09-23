@@ -40,12 +40,13 @@ function run () {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         tileMap.renderMap(player.currentMap);
         if (!player.living) {
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "#d61d00";
             ctx.fillRect(0, canvas.height/2 + 5, canvas.width, 30);
             ctx.fillStyle = "white";
             ctx.font = "30px Arial";
             ctx.textAlign = "center"; 
             ctx.fillText("U DED", canvas.width/2, canvas.height/2 +30);
+            ctx.fillText("press \"R\" to restart", canvas.width/2, canvas.height/2 +60);
             if (keys[82]) {
                 player.reset();
             }
