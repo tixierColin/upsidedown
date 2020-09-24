@@ -73,17 +73,36 @@ class Player extends GameObject {
                     obstacle.pos.x * tileMap.gridSize,
                     obstacle.pos.y * tileMap.gridSize);
             } else {
-                if (obstacle.dir == "t" || obstacle.dir == "b") {
-                    col = this.collision(20,
-                        obstacle.height * tileMap.gridSize,
-                        obstacle.pos.x * tileMap.gridSize + obstacle.width * tileMap.gridSize/2 -10,
-                        obstacle.pos.y * tileMap.gridSize);
-                } else {
-                    col = this.collision(obstacle.width * tileMap.gridSize,
-                        20,
-                        obstacle.pos.x * tileMap.gridSize,
-                        obstacle.pos.y * tileMap.gridSize + obstacle.height * tileMap.gridSize/2 -10);
+                let triangle = [];
+                let obj = {
+                    "pos": {
+                        "x": obstacle.pos.x * tileMap.gridSize,
+                        "y": obstacle.pos.y * tileMap.gridSize
+                    },
+                    "width": obstacle.width * tileMap.gridSize,
+                    "height": obstacle.height * tileMap.gridSize
                 }
+                if (obstacle.dir == "l") { // left
+                    triangle[0] = Point(obj.pos.x, obj.pos.y + (obj.height * 0.58));
+                    triangle[1] = Point(obj.pos.x + obj.width, obj.pos.y);
+                    triangle[2] = Point(obj.pos.x + obj.width, obj.pos.y + obj.height);
+                } else if (obstacle.dir == "r") { // right
+                    triangle[0] = Point(obj.pos.x, obj.pos.y);
+                    triangle[1] = Point(obj.pos.x, obj.pos.y + obj.height);
+                    triangle[2] = Point(obj.pos.x + obj.width, obj.pos.y + (obj.height * 42));
+                } else if (obstacle.dir == "b") { // buttom
+                    triangle[0] = Point(obj.pos.x, obj.pos.y);
+                    triangle[1] = Point(obj.pos.x + obj.width, obj.pos.y);
+                    triangle[2] = Point(obj.pos.x + (obj.width * 0.58), obj.pos.y + obj.height);
+                } else { // top
+                    triangle[0] = Point(obj.pos.x + (obj.width * 0.42), obj.pos.y);
+                    triangle[1] = Point(obj.pos.x, obj.pos.y + obj.height);
+                    triangle[2] = Point(obj.pos.x + obj.width, obj.pos.y + obj.width);
+                }
+                col =   IsPointInTriangle(Point(this.pos.x, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
+                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
+                        IsPointInTriangle(Point(this.pos.x, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
+                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
             }
             
             if (obstacle.type == "floor" && col) {
@@ -171,4 +190,25 @@ class Player extends GameObject {
             this.living = false;
         }
     }
+}
+
+
+/* ######################################################################################################## */
+/* ######################################################################################################## */
+/* ######################################################################################################## */
+
+
+let Point = (x,y) => {return {x,y}}
+
+function IsPointInTriangle(pt, v1, v2, v3) {
+    let ABCArea = CalcTringleArea(v1, v2, v3),
+        PBCArea = CalcTringleArea(pt, v2, v3),
+        PACArea = CalcTringleArea(pt, v1, v3),
+        PABArea = CalcTringleArea(v1, v2, pt);
+
+        return (ABCArea == (PBCArea + PACArea + PABArea)); 
+}
+
+function CalcTringleArea(v1, v2, v3) {
+    return Math.abs(((v1.x * (v2.y - v3.y)) + (v2.x * (v3.y - v1.y)) + (v3.x * (v1.y - v2.y)))/2);
 }
