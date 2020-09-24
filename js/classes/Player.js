@@ -18,8 +18,10 @@ class Player extends GameObject {
     update() {
         this.draw();
         if (this.living) {
+
             this.posCalc();
             this.colDectection();
+
             this.exit();
         }
     }
@@ -43,10 +45,17 @@ class Player extends GameObject {
             this.direction = this.direction == "up" ? "down" : "up";
         }
         if (!this.grounded) {
+            console.log(this.vel.y);
             if (this.direction == "down") {
                 this.vel.y += 0.2;
+                if (this.vel.y > 10) {
+                    this.vel.y = 10
+                }
             } else if (this.direction == "up") {
                 this.vel.y -= 0.2;
+                if (this.vel.y < -10) {
+                    this.vel.y = -10
+                }
             }
             if (keys[37]) {
                 this.vel.x -= 0.55;
@@ -63,12 +72,7 @@ class Player extends GameObject {
         let obstacles = tileMap.getMap(this.currentMap).blocks;
         for (let [key, obstacle] of Object.entries(obstacles)) {
             let col = false;
-            if (obstacle.type != "spike") {
-                col = this.collision(obstacle.width * tileMap.gridSize,
-                    obstacle.height * tileMap.gridSize,
-                    obstacle.pos.x * tileMap.gridSize,
-                    obstacle.pos.y * tileMap.gridSize);
-            } else {
+            if (obstacle.type == "spike") {
                 let triangle = [];
                 let obj = {
                     "pos": {
@@ -99,11 +103,15 @@ class Player extends GameObject {
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + (this.width / 5), this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
-                if (col && obstacle.type == "spike") {
+                if (col) {
                     this.living = false;
                 }
+            } else {
+                col = this.collision(obstacle.width * tileMap.gridSize,
+                    obstacle.height * tileMap.gridSize,
+                    obstacle.pos.x * tileMap.gridSize,
+                    obstacle.pos.y * tileMap.gridSize);
             }
-            
             if (obstacle.type == "floor" && col) {
                 if (col == "bottom") {
                     this.pos.y = obstacle.pos.y * tileMap.gridSize - this.height - 0.3;
