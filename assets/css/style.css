@@ -56,13 +56,14 @@ section#game-container {
   min-height: 600px;
   min-width: 600px;
   height: calc(100vh - 200px);
-  width: calc(100vw - 200px);
   top: -100vh;
-  left: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #fff;
   box-shadow: 0px 0px 35px 2px rgba(0, 0, 0, 0.64);
   border-radius: 4px;
   transition: top 0.4s linear;
+  padding: 32px;
 }
 
 section#game-container:target {
@@ -84,10 +85,36 @@ section#game-container:target > div#close {
   display: block;
 }
 
-section#game-container > canvas#game {
-  border: 1px solid red;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+section#game-container > div#container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+section#game-container > div#container > div#legend {
+  width: 300px;
+}
+
+section#game-container > div#container > div#legend > ul {
+  list-style: none;
+  padding: 0;
+}
+
+section#game-container > div#container > div#legend > ul > li {
+  margin: 8px 0;
+}
+
+section#game-container > div#container > div#legend > ul > li > * {
+  display: inline;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+section#game-container > div#container > div#legend > ul > li > img {
+  height: 16px;
+}
+
+section#game-container > div#container > canvas#game {
+  user-select: none;
 }

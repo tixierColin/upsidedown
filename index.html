@@ -20,7 +20,21 @@
       <div id="close">
         <a href="#">❌</a>
       </div>
-      <canvas id="game" height="500" width="500"></canvas>
+      <div id="container">
+        <div id="legend">
+          <ul>
+            <li><img src="assets/images/arrow_r.png"><span>flèche de direction</span></li>
+            <li><div style="height:16px;width:16px;background-color:#ffa600;display:inline-block;"></div><span>cube inverseur de gravité</span></li>
+            <li><img src="assets/images/spike_r.png"><span>pique tuant</span></li>
+            <li><img src="assets/images/key.png"><span>clefs</span></li>
+            <li><img src="assets/images/door.png"><span>porte de sortie</span></li>
+            <li><img src="assets/images/=>.png"><span>se deplacer a droite (dans les airs)</span></li>
+            <li><img src="assets/images/<=.png"><span>se deplacer a gauche (dans les airs)</span></li>
+            <li><img src="assets/images/A.png"><span>inverser la gravité</span></li>
+          </ul>
+        </div>
+        <canvas id="game" height="500" width="500"></canvas>
+      </div>
     </section>
     <script src="assets/js/classes/GameObject.js"></script>
     <script src="assets/js/classes/Player.js"></script>
