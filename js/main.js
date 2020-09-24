@@ -58,6 +58,9 @@ function run () {
             ctx.fillText("but the rescue capsule hit an asteroid...", canvas.width/2, canvas.height/2);
             ctx.fillText("YOU ARE NOW DED!", canvas.width/2, canvas.height/2 +30);
             ctx.fillText("press \"R\" to restart", canvas.width/2, canvas.height/2 +60);
+            if (keys[82]) {
+                player.reset();
+            }
         } else {
             tileMap.renderMap(player.currentMap);
             player.update();

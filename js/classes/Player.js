@@ -89,7 +89,7 @@ class Player extends GameObject {
                 } else if (obstacle.dir == "r") { // right
                     triangle[0] = Point(obj.pos.x, obj.pos.y);
                     triangle[1] = Point(obj.pos.x, obj.pos.y + obj.height);
-                    triangle[2] = Point(obj.pos.x + obj.width, obj.pos.y + (obj.height * 42));
+                    triangle[2] = Point(obj.pos.x + obj.width, obj.pos.y + (obj.height * 0.42));
                 } else if (obstacle.dir == "b") { // buttom
                     triangle[0] = Point(obj.pos.x, obj.pos.y);
                     triangle[1] = Point(obj.pos.x + obj.width, obj.pos.y);
