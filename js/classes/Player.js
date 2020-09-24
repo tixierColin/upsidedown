@@ -45,7 +45,6 @@ class Player extends GameObject {
             this.direction = this.direction == "up" ? "down" : "up";
         }
         if (!this.grounded) {
-            console.log(this.vel.y);
             if (this.direction == "down") {
                 this.vel.y += 0.2;
                 if (this.vel.y > 10) {
@@ -102,7 +101,8 @@ class Player extends GameObject {
                 col =   IsPointInTriangle(Point(this.pos.x, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + (this.width / 5), this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
-                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
+                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) || 
+                        IsPointInTriangle(Point(this.pos.x + (this.width / 2), this.pos.y + (this.height / 2)), triangle[0], triangle[1], triangle[2]);
                 if (col) {
                     this.living = false;
                 }
