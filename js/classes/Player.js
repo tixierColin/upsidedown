@@ -134,7 +134,6 @@ class Player extends GameObject {
                     ctx.textAlign = "center"; 
                     ctx.fillText("press \"E\" to escape", canvas.width/2, canvas.height/2 +30);
                     if (keys[69]) {
-                        console.log(1);
                         this.win = true;
                     }
                 }

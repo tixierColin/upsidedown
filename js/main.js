@@ -22,9 +22,6 @@ let ctx = canvas.getContext("2d");
 let tileMap = new TileMap();
 let player = new Player(250, 300, 20, 40);
 
-
-// keyboard control VVV
-//let key = {}
 let keys = [];
 document.addEventListener('keydown', function(e){
     keys[e.which] = true;
@@ -38,18 +35,6 @@ function run () {
         //ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#0d0d0d";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        if (!player.living) {
-            ctx.fillStyle = "#d61d00";
-            ctx.fillRect(0, canvas.height/2 + 5, canvas.width, 30);
-            ctx.fillStyle = "white";
-            ctx.font = "30px Arial";
-            ctx.textAlign = "center"; 
-            ctx.fillText("U DED", canvas.width/2, canvas.height/2 +30);
-            ctx.fillText("press \"R\" to restart", canvas.width/2, canvas.height/2 +60);
-            if (keys[82]) {
-                player.reset();
-            }
-        }
         if (player.win) {
             ctx.fillStyle = "white";
             ctx.font = "20px Arial";
@@ -61,6 +46,18 @@ function run () {
         } else {
             tileMap.renderMap(player.currentMap);
             player.update();
+        }
+        if (!player.living) {
+            ctx.fillStyle = "#d61d00";
+            ctx.fillRect(0, canvas.height/2 + 5, canvas.width, 30);
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.textAlign = "center"; 
+            ctx.fillText("WASTED", canvas.width/2, canvas.height/2 +30);
+            ctx.fillText("press \"R\" to restart", canvas.width/2, canvas.height/2 +60);
+            if (keys[82]) {
+                player.reset();
+            }
         }
     }, 1000/60);
 }
