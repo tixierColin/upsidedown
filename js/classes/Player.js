@@ -98,7 +98,8 @@ class Player extends GameObject {
                 col =   IsPointInTriangle(Point(this.pos.x, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + (this.width / 5), this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
-                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
+                        IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) || 
+                        IsPointInTriangle(Point(this.pos.x + (this.width / 2), this.pos.y + (this.height / 2)), triangle[0], triangle[1], triangle[2]);
                 if (col && obstacle.type == "spike") {
                     this.living = false;
                 }
