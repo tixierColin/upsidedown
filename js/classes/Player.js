@@ -12,13 +12,9 @@ class Player extends GameObject {
         this.living = true;
         this.win = false;
     }
-    /*draw() {
-        let image = new Image();
-        image.onload = () => {
-            ctx.drawImage(image, this.pos.x, this.pos.y, this.width, this.height);
-        }
-        image.src = "/img/rob.png" 
-    }*/
+    draw() {
+        ctx.drawImage(playerimg, this.pos.x, this.pos.y, this.width, this.height);
+    }
     update() {
         this.draw();
         if (this.living) {
@@ -101,7 +97,7 @@ class Player extends GameObject {
                 }
                 col =   IsPointInTriangle(Point(this.pos.x, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
-                        IsPointInTriangle(Point(this.pos.x, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
+                        IsPointInTriangle(Point(this.pos.x + (this.width / 5), this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
             }
             

@@ -17,10 +17,13 @@ keyimg.src = "./img/key.png";
 let doorimg = new Image();
 doorimg.src = "./img/door.png";
 
+let playerimg = new Image();
+playerimg.src = "./img/robert.png";
+
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let tileMap = new TileMap();
-let player = new Player(250, 300, 20, 40);
+let player = new Player(250, 300, 38, 60);
 
 let keys = [];
 document.addEventListener('keydown', function(e){
