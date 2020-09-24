@@ -3,24 +3,24 @@ let imgsSpike = {};
 let dirs = ["t", "l", "r", "b"]
 for (const i in dirs) {
     let spikeImg = new Image();
-    spikeImg.src = `./img/spike_${dirs[i]}.png`;
+    spikeImg.src = `./assets/images/spike_${dirs[i]}.png`;
     imgsSpike[dirs[i]] = spikeImg;
 
     let arrowImg = new Image();
-    arrowImg.src = `./img/arrow_${dirs[i]}.png`;
+    arrowImg.src = `./assets/images/arrow_${dirs[i]}.png`;
     imgsArrows[dirs[i]] = arrowImg;
 }
 
 let keyimg = new Image();
-keyimg.src = "./img/key.png";
+keyimg.src = "./assets/images/key.png";
 
 let doorimg = new Image();
-doorimg.src = "./img/door.png";
+doorimg.src = "./assets/images/door.png";
 
 let playerimg = new Image();
-playerimg.src = "./img/ratatacos.png";
+playerimg.src = "./assets/images/ratatacos.png";
 
-let canvas = document.getElementById("canvas");
+let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
 let tileMap = new TileMap();
 let player = new Player(250, 300, 35, 30);
