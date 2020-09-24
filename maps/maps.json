@@ -11,7 +11,7 @@
                 {"pos" : {"x": 0, "y": 45}, "height": 5, "width": 50, "type": "floor"},
                 {"pos" : {"x": 30, "y": 0}, "height": 5, "width": 20, "type": "floor"},
                 {"pos" : {"x": 0, "y": 0}, "height": 5, "width": 20, "type": "floor"},
-                {"pos" : {"x": 35, "y": 40}, "type": "door", "numKeyReq": 3}
+                {"pos" : {"x": 35, "y": 40}, "type": "door", "numKeyReq": 0}
             ]
         },
         {
