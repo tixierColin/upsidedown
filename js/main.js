@@ -3,19 +3,19 @@ let imgsSpike = {};
 let dirs = ["t", "l", "r", "b"]
 for (const i in dirs) {
     let spikeImg = new Image();
-    spikeImg.src = `/img/spike_${dirs[i]}.png`;
+    spikeImg.src = `./img/spike_${dirs[i]}.png`;
     imgsSpike[dirs[i]] = spikeImg;
 
     let arrowImg = new Image();
-    arrowImg.src = `/img/arrow_${dirs[i]}.png`;
+    arrowImg.src = `./img/arrow_${dirs[i]}.png`;
     imgsArrows[dirs[i]] = arrowImg;
 }
 
 let keyimg = new Image();
-keyimg.src = "/img/key.png";
+keyimg.src = "./img/key.png";
 
 let doorimg = new Image();
-doorimg.src = "/img/door.png";
+doorimg.src = "./img/door.png";
 
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
