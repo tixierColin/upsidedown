@@ -12,9 +12,9 @@ class Player extends GameObject {
         this.living = true;
         this.win = false;
     }
-    draw() {
+    /*draw() {
         ctx.drawImage(playerimg, this.pos.x, this.pos.y, this.width, this.height);
-    }
+    }*/
     update() {
         this.draw();
         if (this.living) {
