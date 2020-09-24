@@ -12,9 +12,9 @@ class Player extends GameObject {
         this.living = true;
         this.win = false;
     }
-    /*draw() {
+    draw() {
         ctx.drawImage(playerimg, this.pos.x, this.pos.y, this.width, this.height);
-    }*/
+    }
     update() {
         this.draw();
         if (this.living) {
@@ -99,6 +99,9 @@ class Player extends GameObject {
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + (this.width / 5), this.pos.y + this.height), triangle[0], triangle[1], triangle[2]) ||
                         IsPointInTriangle(Point(this.pos.x + this.width, this.pos.y + this.height), triangle[0], triangle[1], triangle[2]);
+                if (col && obstacle.type == "spike") {
+                    this.living = false;
+                }
             }
             
             if (obstacle.type == "floor" && col) {
@@ -133,9 +136,6 @@ class Player extends GameObject {
                 this.alreadyTouched.push(key)
                 this.direction = this.direction == "up" ? "down" : "up";
                 this.vel.y = 0;
-            }
-            if (col && obstacle.type == "spike") {
-               this.living = false;
             }
             if (col && obstacle.type == "door") {
                 if (obstacle.numKeyReq != this.keys) {

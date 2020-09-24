@@ -46,7 +46,7 @@ class TileMap {
                
             } else if (object.type == "door") {
                 object.height = 10;
-                object.width = 5;
+                object.width = 10;
                 ctx.drawImage(doorimg, object.pos.x * this.gridSize, object.pos.y * this.gridSize,
                     object.width * this.gridSize, object.height*this.gridSize);
             }
