@@ -1,5 +1,3 @@
 # upside down
 
-blocks :
-- floor
-- 
+stupid game made for a "jam" with friends
